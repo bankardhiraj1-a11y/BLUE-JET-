@@ -1,6 +1,5 @@
-import { mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, writeFileSync } from "fs";
 import path from "path";
-import glob from "fast-glob";
 import chokidar from "chokidar";
 import type { FSWatcher } from "chokidar";
 import type { Plugin } from "vite";
@@ -26,6 +25,19 @@ export function mockupPreviewPlugin(): Plugin {
     return path.join(root, GENERATED_MODULE);
   }
 
+  function findMockupFiles(directory: string): string[] {
+    if (!existsSync(directory)) return [];
+
+    return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+      if (entry.name.startsWith("_") || entry.name.startsWith(".")) return [];
+
+      const absolutePath = path.join(directory, entry.name);
+      if (entry.isDirectory()) return findMockupFiles(absolutePath);
+      if (entry.isFile() && entry.name.endsWith(".tsx")) return [absolutePath];
+      return [];
+    });
+  }
+
   function isMockupFile(absolutePath: string): boolean {
     const rel = path.relative(getMockupsAbsDir(), absolutePath);
     return (
@@ -40,10 +52,9 @@ export function mockupPreviewPlugin(): Plugin {
   }
 
   async function discoverComponents(): Promise<Array<DiscoveredComponent>> {
-    const files = await glob(`${MOCKUPS_DIR}/**/*.tsx`, {
-      cwd: root,
-      ignore: ["**/_*/**", "**/_*.tsx"],
-    });
+    const files = findMockupFiles(getMockupsAbsDir())
+      .map((file) => path.relative(root, file).split(path.sep).join("/"))
+      .sort((a, b) => a.localeCompare(b));
 
     return files.map((f) => ({
       globKey: "./" + f.slice("src/".length),
