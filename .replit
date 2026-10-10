@@ -18,3 +18,18 @@ expertMode = true
 [postMerge]
 path = "scripts/post-merge.sh"
 timeoutMs = 20000
+
+[[deployment.responseHeaders]]
+path = "/"
+name = "Cache-Control"
+value = "public, max-age=0, must-revalidate"
+
+[[deployment.responseHeaders]]
+path = "/index.html"
+name = "Cache-Control"
+value = "public, max-age=0, must-revalidate"
+
+[[deployment.responseHeaders]]
+path = "/favicon.png"
+name = "Cache-Control"
+value = "public, max-age=0, must-revalidate"
