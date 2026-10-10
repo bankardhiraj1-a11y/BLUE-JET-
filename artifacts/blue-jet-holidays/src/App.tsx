@@ -13,7 +13,7 @@ import { contacts, enquiryKinds, type EnquiryFormValues, type EnquiryKind } from
 const queryClient = new QueryClient();
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
 const phone = contacts.general.display;
-const email = 'bluejetholidaypune@gmail.com';
+const email = 'info@bluejetholidays.in';
 const mailDraftFor = (form: EnquiryFormValues) => {
   const subject = `Blue Jet Holidays enquiry: ${form.destination || form.kind}`.replace(/[\r\n]+/g, ' ').slice(0, 120);
   const body = [
@@ -78,18 +78,18 @@ const destinations: Destination[] = [
 
 const heroDestinations = ['Thailand', 'Dubai', 'Singapore', 'Bali', 'Vietnam', 'Maldives', 'Somewhere else'];
 const packages = [
-  { destination: 'Thailand', image: 'bangkok-package.webp', length: '4N/5D', minimum: '4 minimum', tier: 'BASIC' },
-  { destination: 'Thailand', image: 'bangkok-package.webp', length: '6N/7D', minimum: '4 minimum', tier: 'BASIC' },
-  { destination: 'Dubai', image: 'dubai-package.webp', length: '4N/5D', minimum: '4 minimum', tier: 'BASIC' },
-  { destination: 'Dubai & Abu Dhabi', image: 'dubai-package.webp', length: '6N/7D', minimum: '4 minimum', tier: 'BASIC' },
-  { destination: 'Singapore', image: 'singapore-package.webp', length: '4N/5D', minimum: '4 minimum', tier: 'BASIC' },
-  { destination: 'Maldives', image: 'maldives-package.webp', length: '4N/5D', minimum: '4 minimum', tier: 'BASIC' },
-  { destination: 'Sri Lanka', image: 'sri-lanka-tea-country.webp', length: '4N/5D', minimum: '4 minimum', tier: 'BASIC' },
-  { destination: 'Kashmir', image: 'kashmir-dal-lake.webp', length: '5N/6D', minimum: '6 minimum', tier: 'BASIC', domestic: true },
-  { destination: 'Kerala', image: 'kerala-backwaters.webp', length: '5N/6D', minimum: '6 minimum', tier: 'BASIC', domestic: true },
-  { destination: 'Rajasthan', image: 'rajasthan-udaipur.webp', length: '5N/6D', minimum: '6 minimum', tier: 'BASIC', domestic: true },
-  { destination: 'Himachal Pradesh', image: 'himachal-package.webp', length: '5N/6D', minimum: '6 minimum', tier: 'BASIC', domestic: true },
-  { destination: 'Leh Ladakh', image: 'ladakh-indus-valley.webp', length: '5N/6D', minimum: '6 minimum', tier: 'BASIC', domestic: true },
+  { destination: 'Thailand', image: 'bangkok-package.webp', length: '4N/5D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
+  { destination: 'Thailand', image: 'bangkok-package.webp', length: '6N/7D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
+  { destination: 'Dubai', image: 'dubai-package.webp', length: '4N/5D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
+  { destination: 'Dubai & Abu Dhabi', image: 'dubai-package.webp', length: '6N/7D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
+  { destination: 'Singapore', image: 'singapore-package.webp', length: '4N/5D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
+  { destination: 'Maldives', image: 'maldives-package.webp', length: '4N/5D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
+  { destination: 'Sri Lanka', image: 'sri-lanka-tea-country.webp', length: '4N/5D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
+  { destination: 'Kashmir', image: 'kashmir-dal-lake.webp', length: '5N/6D', minimum: '6 minimum', travellers: 6, tier: 'BASIC', domestic: true },
+  { destination: 'Kerala', image: 'kerala-backwaters.webp', length: '5N/6D', minimum: '6 minimum', travellers: 6, tier: 'BASIC', domestic: true },
+  { destination: 'Rajasthan', image: 'rajasthan-udaipur.webp', length: '5N/6D', minimum: '6 minimum', travellers: 6, tier: 'BASIC', domestic: true },
+  { destination: 'Himachal Pradesh', image: 'himachal-package.webp', length: '5N/6D', minimum: '6 minimum', travellers: 6, tier: 'BASIC', domestic: true },
+  { destination: 'Leh Ladakh', image: 'ladakh-indus-valley.webp', length: '5N/6D', minimum: '6 minimum', travellers: 6, tier: 'BASIC', domestic: true },
 ];
 const heroCaptions: Record<string, string> = {
   Thailand: 'The lights of Bangkok after dark',
@@ -255,6 +255,20 @@ function Home() {
           </div>
         </section>
 
+        <section className="service-promise">
+          <div className="wrap service-promise-inner">
+            <div className="service-promise-label">
+              <span className="eyebrow">THE BLUE JET DIFFERENCE</span>
+              <span className="mono">THOUGHTFUL SERVICE, LASTING MEMORIES</span>
+            </div>
+            <div className="service-promise-copy">
+              <h2 className="serif">A low price isn’t the whole story.</h2>
+              <p>Some offers lead with a low price, but price alone doesn’t tell you what service is included. Before you book, check the itinerary, inclusions, and service standards.</p>
+              <p>Blue Jet Holidays is pleased to offer thoughtful trip planning and attentive service, helping you make lasting memories while you travel with us.</p>
+            </div>
+          </div>
+        </section>
+
         <section id="destinations" className="destinations section wrap">
           <div className="section-heading">
             <div><div className="eyebrow">WHERE WOULD YOU LIKE TO GO?</div><h2 className="serif">India, overseas,<br />or somewhere new.</h2></div>
@@ -285,7 +299,7 @@ function Home() {
             <div className="package-heading"><div><div className="eyebrow">A FEW WAYS A TRIP CAN TAKE SHAPE</div><h3 className="serif" id="packages-heading">Curated packages,<br /><em>for every dream.</em></h3></div><p>Starting points, not fixed prices. Dates, flights and group size shape the real quotation — ask us for one.</p></div>
             <div className="package-grid">{packages.map((item, index) => <article className="package-card" key={`${item.destination}-${item.length}`}>
               <div className="package-image"><img src={asset(item.image)} alt={`${item.destination} destination`} loading="eager" decoding="async" /><span className={`package-type ${item.domestic ? 'domestic' : ''}`}>{item.domestic ? 'DOMESTIC' : 'INTERNATIONAL'}</span></div>
-              <div className="package-content"><h4 className="serif">{item.destination}</h4><div className="package-facts"><span><span className="fact-icon">▦</span>{item.length}</span><span><span className="fact-icon">♟</span>{item.minimum}</span></div><p className="package-tier">PACKAGE: <strong>{item.tier}</strong></p><button className="package-quote" onClick={() => showEnquiry(item.destination, departure, when, travellers, item.domestic ? 'Domestic holiday' : 'International holiday')} data-testid={`button-package-quote-${index + 1}`}>Get quote <ArrowUpRight size={13} /></button></div>
+              <div className="package-content"><h4 className="serif">{item.destination}</h4><div className="package-facts"><span><span className="fact-icon">▦</span>{item.length}</span><span><span className="fact-icon">♟</span>{item.minimum}</span></div><p className="package-tier">PACKAGE: <strong>{item.tier}</strong></p><button className="package-quote" onClick={() => showEnquiry(item.destination, departure, when, String(item.travellers), item.domestic ? 'Domestic holiday' : 'International holiday')} data-testid={`button-package-quote-${index + 1}`}>Get quote <ArrowUpRight size={13} /></button></div>
             </article>)}</div>
           </section>
           <div className="quote-note"><span className="quote-mark">“</span><p className="serif">No off-the-shelf prices. Just a real conversation about your trip.</p><button className="text-link" onClick={() => showEnquiry(selected, departure, when, travellers, 'General enquiry')} data-testid="button-request-quote">Tell us what you have in mind <ArrowRight size={15} /></button></div>
@@ -405,7 +419,7 @@ function EnquiryModal({ form, onChange, submitting, error, mailFallback, submitt
     <section className="enquiry-modal" role="dialog" aria-modal="true" aria-labelledby="enquiry-heading">
       <div className="enquiry-head"><div><div className="eyebrow">A GOOD TRIP STARTS WITH A CONVERSATION</div><h2 className="serif" id="enquiry-heading">{submitted ? 'Enquiry sent.' : 'Let’s start with you.'}</h2></div><button className="modal-close" aria-label="Close enquiry" onClick={onClose}><X size={17} /></button></div>
       {!submitted ? <>
-        <p className="enquiry-intro">Share your trip details below. Automatic website email delivery is not connected right now. If delivery is unavailable, you can review a pre-filled email draft and send it from your own mail app.</p>
+        <p className="enquiry-intro">Share your trip details below. This form is set up to send enquiries to {email}. If email delivery is unavailable, it will tell you and offer a pre-filled draft you can send from your mail app. Please don’t include passport numbers, payment details, or student names.</p>
         <div className="enquiry-summary"><span><small>ENQUIRY TYPE</small>{form.kind}</span><span><small>DESTINATION / ROUTE</small>{form.destination || 'To be discussed'}</span><span><small>FROM</small>{form.departure || 'To be discussed'}</span><span><small>WHEN</small>{form.when || 'Not decided'}</span><span><small>TRAVELLERS</small>{form.travellers || 'To be discussed'}</span></div>
         <form className="enquiry-form" onSubmit={onSubmit}>
           <label>What kind of trip?
@@ -451,7 +465,7 @@ function Footer({ onEnquire, onDestination }: { onEnquire: (kind?: EnquiryKind) 
         <div className="footer-column"><h3>WAYS TO TRAVEL</h3><div className="footer-links">{services.map(({ label, kind }) => <button key={label} onClick={() => onEnquire(kind)}>{label}</button>)}</div></div>
         <div className="footer-contact"><h3>CONTACT DETAILS</h3><strong className="footer-contact-name">Pravin P. Upadhaye</strong><div className="footer-phone-grid">{[contacts.international, contacts.passport, contacts.general, contacts.domestic].map((contact) => <a key={contact.label} href={`tel:${contact.tel}`}><span>{contact.label}</span><strong>{contact.display}</strong></a>)}</div><a className="footer-email" href={`mailto:${email}`}>{email}</a><a className="whatsapp-link" href="https://wa.me/919673010808" target="_blank" rel="noopener noreferrer"><MessageCircle size={14} /> WhatsApp us <ArrowUpRight size={12} /></a></div>
       </div>
-      <div className="footer-privacy"><div className="eyebrow">HOW THIS ENQUIRY FORM WORKS</div><p>Enquiry details are not saved in this website’s database. Automatic website email delivery is not connected right now; if delivery is unavailable, the form offers a pre-filled email draft for you to review and send yourself. Please do not include passport numbers, payment details, or student-identifying information. Any later sharing of details depends on bookings you approve and the suppliers involved. This site does not use advertising cookies.</p></div>
+      <div className="footer-privacy"><div className="eyebrow">HOW THIS ENQUIRY FORM WORKS</div><p>Website enquiries are addressed to {email}; if delivery is unavailable, the form reports it and offers a pre-filled email draft. Details are not saved in this website’s database. Please do not include passport numbers, payment details, or student-identifying information. Any later sharing of details depends on bookings you approve and the suppliers involved. This site does not use advertising cookies.</p></div>
       <div className="footer-bottom"><span>© 2026 Blue Jet Holidays. A perfect travel partner.</span><span>Sangli · Pune · Maharashtra, India</span><span>Travel arrangements are subject to availability and supplier conditions.</span></div>
     </div>
   </footer>;

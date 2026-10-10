@@ -2,7 +2,7 @@ import { ReplitConnectors } from "@replit/connectors-sdk";
 import { Router, type IRouter, type Request } from "express";
 
 const router: IRouter = Router();
-const destinationInbox = "bluejetholidaypune@gmail.com";
+const destinationInbox = "info@bluejetholidays.in";
 const categories = new Set([
   "General enquiry",
   "International holiday",
