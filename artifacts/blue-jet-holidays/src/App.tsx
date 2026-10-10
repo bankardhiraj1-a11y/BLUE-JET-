@@ -154,7 +154,7 @@ const heroCaptions: Record<string, string> = {
   Thailand: 'The lights of Bangkok after dark',
   Dubai: 'The Palm and the Gulf from the air',
   Singapore: 'The gardens and lake at Marina Bay',
-  Bali: 'Surf against the cliffs of southern Bali',
+  Bali: 'A lakeside temple in Bali',
   Vietnam: 'The limestone islands of Ha Long Bay',
   Maldives: 'The Indian Ocean at sunset',
   'Somewhere else': 'Tell us the place you have in mind',
