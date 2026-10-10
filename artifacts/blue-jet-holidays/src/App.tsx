@@ -88,6 +88,24 @@ const destinations: Destination[] = [
 ];
 
 const heroDestinations = ['Thailand', 'Dubai', 'Singapore', 'Bali', 'Vietnam', 'Maldives', 'Somewhere else'];
+const heroImages: Record<string, string> = {
+  Thailand: 'hero-thailand-hd.jpg',
+  Dubai: 'hero-dubai-hd.jpg',
+  Singapore: 'hero-singapore-hd.jpg',
+  Bali: 'hero-bali-hd.jpg',
+  Vietnam: 'hero-vietnam-hd.jpg',
+  Maldives: 'hero-maldives-hd.jpg',
+  'Somewhere else': 'hero-anywhere-hd.jpg',
+};
+const heroImagePositions: Record<string, string> = {
+  Thailand: 'center 54%',
+  Dubai: 'center 12%',
+  Singapore: 'center 48%',
+  Bali: 'center 48%',
+  Vietnam: 'center 46%',
+  Maldives: 'center 54%',
+  'Somewhere else': 'center 30%',
+};
 type PackageListing = {
   destination: string;
   image: string;
@@ -199,11 +217,7 @@ function Home() {
   const [mailFallback, setMailFallback] = useState(false);
   const [enquiryForm, setEnquiryForm] = useState<EnquiryFormValues>(emptyEnquiry);
   const [heroOffset, setHeroOffset] = useState(0);
-  const imageFor = useMemo(() => {
-    if (selected === 'Somewhere else') return 'mauritius-lagoon.webp';
-    const d = destinations.find((item) => item.name === selected || item.name.startsWith(selected));
-    return d?.image ?? 'mauritius-lagoon.webp';
-  }, [selected]);
+  const imageFor = useMemo(() => heroImages[selected] ?? heroImages['Somewhere else'], [selected]);
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -265,7 +279,7 @@ function Home() {
     <div className="grain">
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} onEnquire={() => showEnquiry()} />
       <main>
-        <section className="hero" id="home" style={{ '--hero-shift': `${heroOffset}px`, '--hero-image': `url("${asset(imageFor)}")` } as CSSProperties}>
+        <section className="hero" id="home" style={{ '--hero-shift': `${heroOffset}px`, '--hero-image': `url("${asset(imageFor)}")`, '--hero-position': heroImagePositions[selected] ?? 'center 54%' } as CSSProperties}>
           <div className="hero-image" />
           <div className="hero-shade" />
           <div className="hero-topline wrap"><span>TRAVEL, THOUGHT THROUGH</span><span className="hero-index">MAHARASHTRA&nbsp; / &nbsp;THE WORLD</span></div>

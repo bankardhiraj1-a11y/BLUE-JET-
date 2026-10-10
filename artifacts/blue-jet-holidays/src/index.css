@@ -447,7 +447,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .mobile-menu { display: none; border: 0; color: var(--ink); background: none; padding: 8px; }
 .mobile-panel { display: none; }
 .hero { position: relative; isolation: isolate; min-height: 690px; height: min(810px, calc(100svh - 76px)); overflow: hidden; display: flex; align-items: stretch; }
-.hero-image { position: absolute; z-index: -2; inset: -40px 0; transform: translate3d(0, calc(var(--hero-shift) * -1), 0) scale(1.05); background: center 54% / cover no-repeat var(--hero-image); transition: opacity .5s; }
+.hero-image { position: absolute; z-index: -2; inset: -40px 0; transform: translate3d(0, calc(var(--hero-shift) * -1), 0); background: center 54% / cover no-repeat var(--hero-image); background-position: var(--hero-position, center 54%); transition: opacity .5s; }
 .hero-shade { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(5, 11, 18, .83) 0%, rgba(5, 11, 18, .63) 46%, rgba(5, 11, 18, .06) 100%), linear-gradient(0deg, #080d13 0%, rgba(8,13,19,.16) 32%, rgba(7,13,19,.17) 75%, rgba(7,13,19,.42) 100%); }
 .hero-topline { position: absolute; top: 32px; left: 50%; transform: translateX(-50%); display: flex; justify-content: space-between; color: rgba(229, 225, 210, .6); font: 9px var(--app-font-mono); letter-spacing: .16em; }
 .hero-content { padding-top: clamp(126px, 16vh, 175px); padding-bottom: 23px; display: flex; flex-direction: column; align-items: flex-start; }
@@ -713,7 +713,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .mobile-panel a, .mobile-panel button { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; color: var(--ink); border: 0; border-bottom: 1px solid var(--hairline); background: none; text-decoration: none; text-align: left; font-size: 13px; }
   .mobile-panel button { color: var(--gold); }
   .hero { min-height: 815px; height: calc(100svh - 66px); max-height: 940px; }
-  .hero-image { background-position: 58% center; inset: -20px -15% }
+  .hero-image { background-position: var(--hero-position, 58% center); inset: -20px -15% }
   .hero-shade { background: linear-gradient(90deg,rgba(5,11,18,.75),rgba(5,11,18,.16)),linear-gradient(0deg,#080d13 0%,rgba(8,13,19,.48) 35%,rgba(8,13,19,.35) 100%); }
   .hero-topline { top: 22px; font-size: 7px; letter-spacing: .11em; }
   .hero-topline .hero-index { display: none; }
