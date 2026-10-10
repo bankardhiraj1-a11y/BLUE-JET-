@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Blue Jet Holidays"
+description = "A cinematic travel-planning website for Blue Jet Holidays, helping travellers explore destinations, browse curated packages, and begin a tailored holiday enquiry."
+version = "1.0.0"
+id = "artifacts/blue-jet-holidays"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23823
+
+[services.development]
+run = "pnpm --filter @workspace/blue-jet-holidays run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/blue-jet-holidays", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/blue-jet-holidays/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23823"
+BASE_PATH = "/"
