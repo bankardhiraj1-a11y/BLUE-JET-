@@ -9,6 +9,17 @@ import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronRight, Compass, MapPin, Menu, MessageCircle, Minus, Phone, Plus, Send, ShieldCheck, X } from 'lucide-react';
 import { SpecialistTravel, TripFormats } from '@/components/travel-sections';
 import { contacts, enquiryKinds, type EnquiryFormValues, type EnquiryKind } from '@/lib/travel';
+import russiaPackageImage from '@assets/generated_images/russia-moscow.jpg';
+import georgiaPackageImage from '@assets/generated_images/georgia-tbilisi.jpg';
+import kenyaPackageImage from '@assets/generated_images/kenya-safari.jpg';
+import japanPackageImage from '@assets/generated_images/japan-kyoto.jpg';
+import andamanPackageImage from '@assets/generated_images/andaman-islands.jpg';
+import karnatakaPackageImage from '@assets/generated_images/karnataka-coorg.jpg';
+import nepalPackageImage from '@assets/generated_images/nepal-kathmandu.jpg';
+import sikkimPackageImage from '@assets/generated_images/sikkim-darjeeling.jpg';
+import hyderabadPackageImage from '@assets/generated_images/hyderabad-charminar.jpg';
+import uttarPradeshPackageImage from '@assets/generated_images/uttar-pradesh-varanasi.jpg';
+import blueJetPlaneMark from '@assets/generated_images/bluejet-plane-mark.png';
 
 const queryClient = new QueryClient();
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
@@ -77,20 +88,50 @@ const destinations: Destination[] = [
 ];
 
 const heroDestinations = ['Thailand', 'Dubai', 'Singapore', 'Bali', 'Vietnam', 'Maldives', 'Somewhere else'];
-const packages = [
-  { destination: 'Thailand', image: 'bangkok-package.webp', length: '4N/5D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
-  { destination: 'Thailand', image: 'bangkok-package.webp', length: '6N/7D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
-  { destination: 'Dubai', image: 'dubai-package.webp', length: '4N/5D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
-  { destination: 'Dubai & Abu Dhabi', image: 'dubai-package.webp', length: '6N/7D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
-  { destination: 'Singapore', image: 'singapore-package.webp', length: '4N/5D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
-  { destination: 'Maldives', image: 'maldives-package.webp', length: '4N/5D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
-  { destination: 'Sri Lanka', image: 'sri-lanka-tea-country.webp', length: '4N/5D', minimum: '4 minimum', travellers: 4, tier: 'BASIC' },
-  { destination: 'Kashmir', image: 'kashmir-dal-lake.webp', length: '5N/6D', minimum: '6 minimum', travellers: 6, tier: 'BASIC', domestic: true },
-  { destination: 'Kerala', image: 'kerala-backwaters.webp', length: '5N/6D', minimum: '6 minimum', travellers: 6, tier: 'BASIC', domestic: true },
-  { destination: 'Rajasthan', image: 'rajasthan-udaipur.webp', length: '5N/6D', minimum: '6 minimum', travellers: 6, tier: 'BASIC', domestic: true },
-  { destination: 'Himachal Pradesh', image: 'himachal-package.webp', length: '5N/6D', minimum: '6 minimum', travellers: 6, tier: 'BASIC', domestic: true },
-  { destination: 'Leh Ladakh', image: 'ladakh-indus-valley.webp', length: '5N/6D', minimum: '6 minimum', travellers: 6, tier: 'BASIC', domestic: true },
+type PackageListing = {
+  destination: string;
+  image: string;
+  length: string;
+  price: number;
+  currency: 'USD' | 'INR';
+  travellers: number;
+  tier: 'BASIC';
+  group: 'international' | 'india';
+  badge?: string;
+};
+const packages: PackageListing[] = [
+  { destination: 'Thailand', image: asset('bangkok-package.webp'), length: '4N/5D', price: 259, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Thailand', image: asset('bangkok-package.webp'), length: '6N/7D', price: 399, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Dubai', image: asset('dubai-package.webp'), length: '4N/5D', price: 399, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Dubai & Abu Dhabi', image: asset('dubai-package.webp'), length: '6N/7D', price: 499, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Singapore', image: asset('singapore-package.webp'), length: '4N/5D', price: 499, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Malaysia', image: asset('malaysia-kuala-lumpur.webp'), length: '5N/6D', price: 399, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Bali', image: asset('bali-package.webp'), length: '4N/5D', price: 399, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Vietnam', image: asset('vietnam-package.webp'), length: '4N/5D', price: 399, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Vietnam', image: asset('vietnam-package.webp'), length: '6N/7D', price: 599, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Russia', image: russiaPackageImage, length: '6N/7D', price: 1299, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Georgia', image: georgiaPackageImage, length: '5N/6D', price: 999, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Kenya', image: kenyaPackageImage, length: '6N/7D', price: 1999, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Maldives', image: asset('maldives-package.webp'), length: '4N/5D', price: 999, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Japan', image: japanPackageImage, length: '6N/7D', price: 1599, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Sri Lanka', image: asset('sri-lanka-tea-country.webp'), length: '4N/5D', price: 399, currency: 'USD', travellers: 4, tier: 'BASIC', group: 'international' },
+  { destination: 'Himachal Pradesh', image: asset('himachal-package.webp'), length: '5N/6D', price: 21999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
+  { destination: 'Andaman & Nicobar Islands', image: andamanPackageImage, length: '5N/6D', price: 21999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
+  { destination: 'Jammu & Kashmir', image: asset('kashmir-dal-lake.webp'), length: '5N/6D', price: 26999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
+  { destination: 'Karnataka · Mysore, Ooty & Coorg', image: karnatakaPackageImage, length: '5N/6D', price: 21999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
+  { destination: 'Kerala', image: asset('kerala-backwaters.webp'), length: '5N/6D', price: 26999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
+  { destination: 'Leh Ladakh', image: asset('ladakh-indus-valley.webp'), length: '5N/6D', price: 15999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
+  { destination: 'Rajasthan', image: asset('rajasthan-udaipur.webp'), length: '5N/6D', price: 21999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
+  { destination: 'Gujarat', image: asset('gujarat-rann-of-kutch.webp'), length: '4N/5D', price: 14999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
+  { destination: 'Nepal', image: nepalPackageImage, length: '5N/6D', price: 18999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india', badge: 'NEARBY INTERNATIONAL' },
+  { destination: 'Sikkim & Darjeeling', image: sikkimPackageImage, length: '5N/6D', price: 22999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
+  { destination: 'Hyderabad', image: hyderabadPackageImage, length: '4N/5D', price: 9999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
+  { destination: 'Varanasi, Prayagraj & Ayodhya', image: uttarPradeshPackageImage, length: 'Duration to be confirmed', price: 19999, currency: 'INR', travellers: 6, tier: 'BASIC', group: 'india' },
 ];
+const formatPackagePrice = (item: PackageListing) =>
+  item.currency === 'USD'
+    ? `${item.price.toLocaleString('en-US')} USD`
+    : `₹${item.price.toLocaleString('en-IN')}`;
 const heroCaptions: Record<string, string> = {
   Thailand: 'The lights of Bangkok after dark',
   Dubai: 'The Palm and the Gulf from the air',
@@ -296,11 +337,46 @@ function Home() {
             <button className="btn-gold" type="button" onClick={() => showEnquiry('Somewhere else', departure, when, travellers, 'International holiday')}>Tell us where you want to go <ArrowRight size={15} /></button>
           </div>
           <section className="package-section" aria-labelledby="packages-heading">
-            <div className="package-heading"><div><div className="eyebrow">A FEW WAYS A TRIP CAN TAKE SHAPE</div><h3 className="serif" id="packages-heading">Curated packages,<br /><em>for every dream.</em></h3></div><p>Starting points, not fixed prices. Dates, flights and group size shape the real quotation — ask us for one.</p></div>
-            <div className="package-grid">{packages.map((item, index) => <article className="package-card" key={`${item.destination}-${item.length}`}>
-              <div className="package-image"><img src={asset(item.image)} alt={`${item.destination} destination`} loading="eager" decoding="async" /><span className={`package-type ${item.domestic ? 'domestic' : ''}`}>{item.domestic ? 'DOMESTIC' : 'INTERNATIONAL'}</span></div>
-              <div className="package-content"><h4 className="serif">{item.destination}</h4><div className="package-facts"><span><span className="fact-icon">▦</span>{item.length}</span><span><span className="fact-icon">♟</span>{item.minimum}</span></div><p className="package-tier">PACKAGE: <strong>{item.tier}</strong></p><button className="package-quote" onClick={() => showEnquiry(item.destination, departure, when, String(item.travellers), item.domestic ? 'Domestic holiday' : 'International holiday')} data-testid={`button-package-quote-${index + 1}`}>Get quote <ArrowUpRight size={13} /></button></div>
-            </article>)}</div>
+            <div className="package-heading"><div><div className="eyebrow">A FEW WAYS A TRIP CAN TAKE SHAPE</div><h3 className="serif" id="packages-heading">Curated packages,<br /><em>for every dream.</em></h3></div><p>Published rates and group sizes are shown below. Confirm dates, inclusions, and availability with us before booking.</p></div>
+            <Tabs defaultValue="international" className="package-tabs">
+              <TabsList className="package-tabs-list" aria-label="Package regions">
+                <TabsTrigger value="international">International · 15</TabsTrigger>
+                <TabsTrigger value="india">India & nearby · 12</TabsTrigger>
+              </TabsList>
+              {(['international', 'india'] as const).map((group) => (
+                <TabsContent value={group} className="package-tab-content" key={group}>
+                  <div className="package-grid">
+                    {packages.filter((item) => item.group === group).map((item, index) => (
+                      <article className="package-card" key={`${item.destination}-${item.length}`}>
+                        <div className="package-image">
+                          <img src={item.image} alt={`${item.destination} package`} loading="lazy" decoding="async" />
+                          <span className={`package-type ${group === 'india' ? 'domestic' : ''}`}>{item.badge ?? (group === 'india' ? 'DOMESTIC' : 'INTERNATIONAL')}</span>
+                        </div>
+                        <div className="package-content">
+                          <h4 className="serif">{item.destination}</h4>
+                          <div className="package-facts">
+                            <span><span className="fact-icon">▦</span>{item.length}</span>
+                            <span><span className="fact-icon">♟</span>{item.travellers} PAX</span>
+                          </div>
+                          <div className="package-price">
+                            <span>RATE · {item.travellers} PAX</span>
+                            <strong>{formatPackagePrice(item)}</strong>
+                          </div>
+                          <p className="package-tier">PACKAGE: <strong>{item.tier}</strong></p>
+                          <button className="package-quote" onClick={() => showEnquiry(item.destination, departure, when, String(item.travellers), group === 'india' ? 'Domestic holiday' : 'International holiday')} data-testid={`button-package-quote-${group}-${index + 1}`}>
+                            Get quote <ArrowUpRight size={13} />
+                          </button>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </TabsContent>
+              ))}
+            </Tabs>
+            <aside className="package-terms" aria-label="Package terms and conditions">
+              <ShieldCheck size={18} aria-hidden="true" />
+              <p><strong>Terms &amp; Conditions apply to all priced packages.</strong> Rates are shown in the listed currency and for the stated group size. Availability, inclusions, exclusions, taxes, payment, and cancellation terms will be confirmed in the written quotation before booking.</p>
+            </aside>
           </section>
           <div className="quote-note"><span className="quote-mark">“</span><p className="serif">No off-the-shelf prices. Just a real conversation about your trip.</p><button className="text-link" onClick={() => showEnquiry(selected, departure, when, travellers, 'General enquiry')} data-testid="button-request-quote">Tell us what you have in mind <ArrowRight size={15} /></button></div>
         </section>
@@ -357,7 +433,7 @@ function Header({ menuOpen, setMenuOpen, onEnquire }: { menuOpen: boolean; setMe
   const nav = [['Destinations', '#destinations'], ['Tour formats', '#trip-formats'], ['Pilgrimages', '#spiritual-trips'], ['Rail', '#rail-travel'], ['Visa & passport', '#travel-documents'], ['FAQs', '#questions']];
   return <header className="site-header">
     <div className="header-inner wrap">
-      <a href="#home" className="brand" aria-label="Blue Jet Holidays home"><img src={asset('bluejet-official-logo.png')} alt="Blue Jet Holidays — A perfect travel partner" /></a>
+      <a href="#home" className="brand" aria-label="Blue Jet Holidays home"><img src={blueJetPlaneMark} alt="" aria-hidden="true" /><span className="brand-lockup"><strong>BLUE JET</strong><em>Holidays</em><small>Perfect travel partner</small></span></a>
       <nav className={`desktop-nav ${menuOpen ? 'nav-open' : ''}`} aria-label="Main navigation">{nav.map(([label, href]) => <a key={label} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}</nav>
       <div className="header-actions"><a className="header-phone" href={`tel:${contacts.general.tel}`}><Phone size={13} fill="currentColor" /> <span>{phone}</span></a><button className="mobile-menu" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button></div>
     </div>
@@ -460,7 +536,7 @@ function Footer({ onEnquire, onDestination }: { onEnquire: (kind?: EnquiryKind) 
   return <footer className="footer">
     <div className="wrap">
       <div className="footer-top">
-        <div className="footer-brand"><a href="#home"><img src={asset('bluejet-official-logo.png')} alt="Blue Jet Holidays — A perfect travel partner" /></a><p>Trip planning across India and worldwide: customized, private, group, student, and spiritual journeys, plus rail, visa, and passport enquiries.</p><p className="footer-address"><MapPin size={14} /> 29/30 Mahada Colony, Tal. Palus, Dist. Sangli, Maharashtra 416310</p><p className="footer-address"><span className="hub-icon">▣</span> Operations hub: Swargate, Pune, Maharashtra</p></div>
+        <div className="footer-brand"><a href="#home" className="footer-brand-lockup"><img src={blueJetPlaneMark} alt="" aria-hidden="true" /><span className="brand-lockup"><strong>BLUE JET</strong><em>Holidays</em><small>Perfect travel partner</small></span></a><p>Trip planning across India and worldwide: customized, private, group, student, and spiritual journeys, plus rail, visa, and passport enquiries.</p><p className="footer-address"><MapPin size={14} /> 29/30 Mahada Colony, Tal. Palus, Dist. Sangli, Maharashtra 416310</p><p className="footer-address"><span className="hub-icon">▣</span> Operations hub: Swargate, Pune, Maharashtra</p></div>
         <div className="footer-column"><h3>DESTINATIONS</h3><div className="footer-links">{destinations.map((destination) => <button key={destination.name} onClick={() => onDestination(destination.name, destination.scope)}>{destination.name}</button>)}<button onClick={() => onDestination('Somewhere else worldwide', 'international')}>Somewhere else worldwide</button></div></div>
         <div className="footer-column"><h3>WAYS TO TRAVEL</h3><div className="footer-links">{services.map(({ label, kind }) => <button key={label} onClick={() => onEnquire(kind)}>{label}</button>)}</div></div>
         <div className="footer-contact"><h3>CONTACT DETAILS</h3><strong className="footer-contact-name">Pravin P. Upadhaye</strong><div className="footer-phone-grid">{[contacts.international, contacts.passport, contacts.general, contacts.domestic].map((contact) => <a key={contact.label} href={`tel:${contact.tel}`}><span>{contact.label}</span><strong>{contact.display}</strong></a>)}</div><a className="footer-email" href={`mailto:${email}`}>{email}</a><a className="whatsapp-link" href="https://wa.me/919673010808" target="_blank" rel="noopener noreferrer"><MessageCircle size={14} /> WhatsApp us <ArrowUpRight size={12} /></a></div>
