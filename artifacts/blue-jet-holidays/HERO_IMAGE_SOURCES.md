@@ -12,5 +12,5 @@ The Unsplash hero images are downloaded at 2400 × 1350 and used under the [Unsp
 
 ## Wikimedia Commons replacements
 
-- `public/assets/hero-thailand-hd.jpg`: “An illuminated ARUN WAT on the banks of the Chao Phraya river in Bangkok during the traditional Loi Krathong festival on Nov.11 night” from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:An_illuminated_ARUN_WAT_on_the_banks_of_the_Chao_Phraya_river_in_Bangkok_during_the_traditional_Loi_Krathong_festival_on_Nov.11_night..JPG), marked [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+- `public/assets/hero-thailand-hd.jpg`: “Templo Wat Arun, Bangkok, Tailandia, 2013-08-22, DD 05.jpg” by Diego Delso, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Templo_Wat_Arun,_Bangkok,_Tailandia,_2013-08-22,_DD_05.jpg), licensed [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Credit: “Diego Delso / Wikimedia Commons / CC BY-SA 3.0.”
 - `public/assets/hero-dubai-hd.jpg`: “Dubai skyscrapers at night 2011.jpg” by Michaelbibin, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Dubai_skyscrapers_at_night_2011.jpg), marked [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
