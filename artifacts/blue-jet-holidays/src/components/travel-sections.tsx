@@ -2,32 +2,35 @@ import {
   ArrowRight,
   ArrowUpRight,
   BookOpen,
-  Compass,
-  GraduationCap,
-  Globe2,
   Landmark,
   MapPin,
   Plane,
   ShieldCheck,
-  Train,
-  Users,
-  UserRound,
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { contacts, type EnquiryKind } from '@/lib/travel';
+import customizedTourImage from '@assets/generated_images/tour-customized.jpg';
+import groupTourImage from '@assets/generated_images/tour-group.jpg';
+import privateTourImage from '@assets/generated_images/tour-private.jpg';
+import internationalStudyImage from '@assets/generated_images/study-international.jpg';
+import domesticStudyImage from '@assets/generated_images/study-domestic.jpg';
+import railwayImage from '@assets/generated_images/railway-booking-india.jpg';
+import jyotirlingaImage from '@assets/generated_images/pilgrimage-jyotirlinga.jpg';
+import ashtavinayakaImage from '@assets/generated_images/pilgrimage-ashtavinayaka.jpg';
+import charDhamImage from '@assets/generated_images/pilgrimage-char-dham.jpg';
+import kedarnathImage from '@assets/generated_images/pilgrimage-kedarnath.jpg';
 
 type TravelAction = (kind: EnquiryKind) => void;
-const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
 
 const tourFormats = [
   {
     value: 'customized' as const,
     kind: 'Customized tour' as const,
     tab: 'Customized tours',
-    image: 'mauritius-lagoon.webp',
+    image: customizedTourImage,
+    imageAlt: 'Travel planner and clients shaping a custom itinerary together',
     kicker: 'MADE AROUND YOUR BRIEF',
     title: 'Your places. Your pace.',
-    icon: Compass,
     description: 'Start with a destination, a date, or a list of things you want to experience. Share the brief and the team can discuss a route and itinerary tailored to your group.',
     details: ['Domestic or international routes', 'Your preferred dates and travel pace', 'A written quotation before you decide'],
   },
@@ -35,10 +38,10 @@ const tourFormats = [
     value: 'groups' as const,
     kind: 'Group tour (16+ travellers)' as const,
     tab: 'Groups · 16+',
-    image: 'kashmir-dal-lake.webp',
+    image: groupTourImage,
+    imageAlt: 'A group of travellers gathered at a scenic mountain viewpoint',
     kicker: 'FOR PARTIES OF 16 OR MORE',
     title: 'Bring everyone along.',
-    icon: Users,
     description: 'Tell us who is travelling, the route you have in mind, and what the group needs. We will review the request and discuss a plan with the group lead.',
     details: ['Group size starts at 16 travellers', 'One enquiry from the nominated organiser', 'Final availability and inclusions confirmed in writing'],
   },
@@ -46,10 +49,10 @@ const tourFormats = [
     value: 'private' as const,
     kind: 'Private tour (up to 11 travellers)' as const,
     tab: 'Private · up to 11',
-    image: 'kerala-backwaters.webp',
+    image: privateTourImage,
+    imageAlt: 'A family enjoying a private coastal walk',
     kicker: 'FOR PRIVATE PARTIES OF UP TO 11',
     title: 'Keep the trip close-knit.',
-    icon: UserRound,
     description: 'A private-trip enquiry for couples, families, or a small party. Share your destination and preferred pace so the team can plan around the people going.',
     details: ['Private parties up to 11 travellers', 'Share access or pacing requirements', 'The itinerary and quote are discussed with you'],
   },
@@ -57,10 +60,10 @@ const tourFormats = [
     value: 'international-study' as const,
     kind: 'International student study tour' as const,
     tab: 'International study',
-    image: 'malaysia-kuala-lumpur.webp',
+    image: internationalStudyImage,
+    imageAlt: 'Indian university students learning at an aerospace and science museum',
     kicker: 'LEARNING BEYOND THE CLASSROOM',
     title: 'International study tours.',
-    icon: Globe2,
     description: 'Schools and colleges can enquire about learning-focused travel outside India. Share the subject, age band, group size, and preferred travel window—not individual student records.',
     details: ['For school and college groups', 'Educational focus and adult lead contact', 'Entry rules, permissions, and access checked before booking'],
   },
@@ -68,20 +71,20 @@ const tourFormats = [
     value: 'domestic-study' as const,
     kind: 'Domestic student study tour' as const,
     tab: 'Domestic study',
-    image: 'rajasthan-udaipur.webp',
+    image: domesticStudyImage,
+    imageAlt: 'Indian school students taking part in a science centre demonstration',
     kicker: 'INDIA, THROUGH A LEARNING LENS',
     title: 'Domestic study tours.',
-    icon: GraduationCap,
     description: 'Plan a school or college group visit within India, shaped around the curriculum and time available. Science and space-learning visits, including suitable ISRO-related destinations, depend on public access, centre schedules, and prior approval.',
     details: ['For domestic school and college groups', 'ISRO-related visits are not guaranteed or an official partnership', 'Please do not include children’s names or sensitive information'],
   },
 ];
 
 const spiritualRoutes = [
-  { title: 'Jyotirlinga journeys', text: 'Discuss a route that connects the shrines your group wants to visit.', symbol: '१२' },
-  { title: 'Ashtavinayaka', text: 'Plan travel between the eight Ganpati temples of Maharashtra.', symbol: '८' },
-  { title: 'Char Dham', text: 'Talk through a four-shrine pilgrimage plan, route, and travel pace.', symbol: '४' },
-  { title: 'Kedarnath', text: 'Ask about a Kedarnath-focused itinerary and the current travel requirements.', symbol: 'ॐ' },
+  { title: 'Jyotirlinga journeys', text: 'Discuss a route that connects the shrines your group wants to visit.', symbol: '१२', image: jyotirlingaImage, imageAlt: 'Historic stone temple at sunrise with pilgrims approaching' },
+  { title: 'Ashtavinayaka', text: 'Plan travel between the eight Ganpati temples of Maharashtra.', symbol: '८', image: ashtavinayakaImage, imageAlt: 'Traditional Maharashtra temple with visitors approaching' },
+  { title: 'Char Dham', text: 'Talk through a four-shrine pilgrimage plan, route, and travel pace.', symbol: '४', image: charDhamImage, imageAlt: 'Pilgrimage temple set within a Himalayan mountain valley' },
+  { title: 'Kedarnath', text: 'Ask about a Kedarnath-focused itinerary and the current travel requirements.', symbol: 'ॐ', image: kedarnathImage, imageAlt: 'Kedarnath temple beneath snow-covered Himalayan peaks' },
 ];
 
 export function TripFormats({ onEnquire }: { onEnquire: TravelAction }) {
@@ -102,15 +105,11 @@ export function TripFormats({ onEnquire }: { onEnquire: TravelAction }) {
           {tourFormats.map((format) => <TabsTrigger className="travel-tab" key={format.value} value={format.value}>{format.tab}</TabsTrigger>)}
         </TabsList>
         {tourFormats.map((format) => {
-          const Icon = format.icon;
           return (
             <TabsContent className="travel-tab-content" key={format.value} value={format.value}>
               <article className="format-panel">
-                <div className="format-illustration" aria-hidden="true">
-                  <div className="format-orbit format-orbit-one" />
-                  <div className="format-orbit format-orbit-two" style={{ backgroundImage: `linear-gradient(rgba(10, 18, 26, .36), rgba(10, 18, 26, .36)), url("${asset(format.image)}")` }} />
-                  <span><Icon size={39} strokeWidth={1.25} /></span>
-                  <small className="mono">{format.tab.toUpperCase()}</small>
+                <div className="format-illustration">
+                  <img className="format-photo" src={format.image} alt={format.imageAlt} loading="lazy" decoding="async" />
                 </div>
                 <div className="format-copy">
                   <div className="eyebrow">{format.kicker}</div>
@@ -146,11 +145,14 @@ export function SpecialistTravel({ onEnquire }: { onEnquire: TravelAction }) {
           <div className="spiritual-grid">
             {spiritualRoutes.map((route) => (
               <article className="spiritual-card" key={route.title}>
-                <span className="spiritual-symbol" aria-hidden="true">{route.symbol}</span>
-                <div className="eyebrow">PILGRIMAGE ROUTE</div>
-                <h3 className="serif">{route.title}</h3>
-                <p>{route.text}</p>
-                <button className="text-link" type="button" onClick={() => onEnquire('Spiritual journey')}>Ask about this route <ArrowUpRight size={14} /></button>
+                <img className="spiritual-photo" src={route.image} alt={route.imageAlt} loading="lazy" decoding="async" />
+                <div className="spiritual-card-content">
+                  <span className="spiritual-symbol" aria-hidden="true">{route.symbol}</span>
+                  <div className="eyebrow">PILGRIMAGE ROUTE</div>
+                  <h3 className="serif">{route.title}</h3>
+                  <p>{route.text}</p>
+                  <button className="text-link" type="button" onClick={() => onEnquire('Spiritual journey')}>Ask about this route <ArrowUpRight size={14} /></button>
+                </div>
               </article>
             ))}
           </div>
@@ -159,11 +161,8 @@ export function SpecialistTravel({ onEnquire }: { onEnquire: TravelAction }) {
 
       <section id="rail-travel" className="rail-section section wrap">
         <div className="rail-panel">
-          <div className="rail-art" aria-hidden="true">
-            <Train size={53} strokeWidth={1.1} />
-            <span className="rail-line rail-line-one" />
-            <span className="rail-line rail-line-two" />
-            <span className="mono">ACROSS INDIA</span>
+          <div className="rail-art">
+            <img className="rail-photo" src={railwayImage} alt="Passenger train waiting at an Indian railway platform" loading="lazy" decoding="async" />
           </div>
           <div className="rail-copy">
             <div className="eyebrow">RAIL JOURNEYS ACROSS INDIA</div>
