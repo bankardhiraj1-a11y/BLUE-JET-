@@ -98,7 +98,7 @@ const heroImages: Record<string, string> = {
   'Somewhere else': 'hero-anywhere-hd.jpg',
 };
 const heroImagePositions: Record<string, string> = {
-  Thailand: '100% center',
+  Thailand: 'center 50%',
   Dubai: 'center 12%',
   Singapore: 'center 48%',
   Bali: 'center 48%',
@@ -151,7 +151,7 @@ const formatPackagePrice = (item: PackageListing) =>
     ? `${item.price.toLocaleString('en-US')} USD`
     : `₹${item.price.toLocaleString('en-IN')}`;
 const heroCaptions: Record<string, string> = {
-  Thailand: 'Wat Arun by the Chao Phraya River',
+  Thailand: 'Wat Arun illuminated on the Chao Phraya',
   Dubai: 'The Palm and the Gulf from the air',
   Singapore: 'The gardens and lake at Marina Bay',
   Bali: 'A lakeside temple in Bali',
